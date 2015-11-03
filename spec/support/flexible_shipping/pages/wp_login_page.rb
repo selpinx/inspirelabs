@@ -1,6 +1,6 @@
 class WpLoginPage
 	include PageObject
-	
+
 	page_url "http://woocommercebeta.stage.inspirelabs.pl/wp-admin/"
 
 	text_field(:user, id: "user_login")
