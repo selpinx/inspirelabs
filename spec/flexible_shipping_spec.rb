@@ -4,7 +4,8 @@ describe "Flexible Shipping test scenarios" do
 	before(:all) do
 		visit(WpLoginPage)
 		on(WpLoginPage).login('selpinx', 'Hefalump650')
-		on(WpSettingsPage).wait_until { @current_page.settings_page_loaded? } #@current_page means lately used page
+		#@current_page means lately used page
+		on(WpSettingsPage).wait_until { @current_page.settings_page_loaded? }
 	end
 
   let(:shipping_method_1) { "List ekononomiczny"}
@@ -35,7 +36,7 @@ describe "Flexible Shipping test scenarios" do
       on(FlexibleShippingSettingsPage).select_condition("Per order")
     end
 
-    it "Add first shipment method" do
+    it "Add first shipping method" do
       on(FlexibleShippingSettingsPage).add_new_method
       on(AddNewMethodPage).check_enable_method
       on(AddNewMethodPage).shipping_title = shipping_method_1
@@ -46,8 +47,7 @@ describe "Flexible Shipping test scenarios" do
       on(AddNewMethodPage).save_changes
     end
 
-
-    it "Add second shipment method" do
+    it "Add second shipping method" do
       #make sure that "Add new" button is visible on the screen
       on(FlexibleShippingSettingsPage).add_new_method_element.scroll_into_view
       # on(FlexibleShippingSettingsPage).scroll_to(@current_page.add_new_method_element)
