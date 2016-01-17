@@ -1,3 +1,4 @@
+#encoding: UTF-8
 require 'spec_helper'
 
 describe "Flexible Shipping test scenarios" do
@@ -53,7 +54,7 @@ describe "Flexible Shipping test scenarios" do
 
     it "Add second shipping method" do
       #make sure that "Add new" button is visible on the screen
-      on(FlexibleShippingSettingsPage).add_new_method_element.scroll_into_view
+      on(FlexibleShippingSettingsPage).enable_plugin_element.scroll_into_view
       # on(FlexibleShippingSettingsPage).scroll_to(@current_page.add_new_method_element)
       on(FlexibleShippingSettingsPage).add_new_method_element.when_visible(30).click
       on(AddNewMethodPage).check_enable_method
@@ -75,6 +76,8 @@ describe "Flexible Shipping test scenarios" do
 
 		it 'Add product to cart' do
 			@global[:product_price] = on(ShopMainPage).get_product_price(product_name)
+      #tymczasowała łatka do scrollowania
+      @browser.scroll.to [0, 350]
 			on(ShopMainPage).add_product_to_cart(product_name)
 		end
 
@@ -84,15 +87,17 @@ describe "Flexible Shipping test scenarios" do
 
 		it 'Check that right shipping method is visible' do
 			method_text = on(CartPage).get_shipping_method(shipping_method_2).text
-			expect(method_text).to eq("#{shipping_method_2}: #{cost_2},00 zł")
+			#do poprawy polskie znaki
+      expect(method_text).to eq("#{shipping_method_2}: #{cost_2}.00 zł")
 		end
 
 		it 'Check that correct tax value' do
-			#calculate tax_value from product_price
-		  expected_tax_value = ((@global[:product_price].to_i / 1.23) * 0.23).round(2)
+      #calculate tax_value from product_price
+		  binding.pry
+      expected_tax_value = ((@global[:product_price].to_i / 1.23) * 0.23).round(2)
 			#replace ',' to '.' in tax_value string
 			current_tax_value = on(CartPage).get_tax_value.gsub(",",".").to_f
-			expect(current_tax_value).to eq(expected_tax_value)
+      expect(current_tax_value).to eq(expected_tax_value)
 		end
 
 		it "Go to Flexible Shipping Settings" do
