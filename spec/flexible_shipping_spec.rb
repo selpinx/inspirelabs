@@ -85,12 +85,14 @@ describe "Flexible Shipping test scenarios" do
 		it 'Check that right shipping method is visible' do
 			method_text = on(CartPage).get_shipping_method(shipping_method_2).text
 			expect(method_text).to eq("#{shipping_method_2}: #{cost_2},00 zł")
-		end
+		#była "." więc ktoś przestawił w Woo
+    end
 
 		it 'Check that correct tax value' do
 			#calculate tax_value from product_price
 		  expected_tax_value = ((@global[:product_price].to_i / 1.23) * 0.23).round(2)
-			#replace ',' to '.' in tax_value string
+			#istotne jest chyba ustawione zaokrąglenie w Woo
+      #replace ',' to '.' in tax_value string
 			current_tax_value = on(CartPage).get_tax_value.gsub(",",".").to_f
 			expect(current_tax_value).to eq(expected_tax_value)
 		end
