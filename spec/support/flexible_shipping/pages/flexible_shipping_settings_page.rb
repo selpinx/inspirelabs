@@ -9,6 +9,7 @@ class FlexibleShippingSettingsPage
   table(:shipping_methods_table, class: 'wc_shipping widefat wp-list-table')
   div(:message_box, id: 'message')
 
+
   def delete_shipping_method(method)
     shipping_methods_table_element["#{method}"][11].link_element.click
     puts self.message_box_element.when_visible.text

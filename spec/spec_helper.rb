@@ -2,7 +2,7 @@ require 'watir-webdriver'
 require 'pry'
 require 'require_all'
 require 'page-object'
-require 'watir-scroll'
+require 'watir-webdriver'
 
 require_rel 'support'
 
