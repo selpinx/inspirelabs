@@ -4,6 +4,7 @@ class FlexibleShippingSettingsPage
   page_url "http://woocommercebeta.stage.inspirelabs.pl/wp-admin/admin.php?page=wc-settings&tab=shipping&section=wpdesk_flexible_shipping"
 
   checkbox(:enable_plugin, id: 'woocommerce_flexible_shipping_enabled')
+  h3(:goto_shippingmethods, class: 'wc-settings-sub-title ')
   link(:add_new_method, class: 'add-new-h2')
   button(:save_changes, class: 'button-primary')
   table(:shipping_methods_table, class: 'wc_shipping widefat wp-list-table')

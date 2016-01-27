@@ -53,7 +53,9 @@ describe "Flexible Shipping test scenarios" do
 
     it "Add second shipping method" do
       #make sure that "Add new" button is visible on the screen
-      on(FlexibleShippingSettingsPage).add_new_method_element.scroll_into_view
+      #do rozwiązania kwestia scrolowania do linku który jest hover
+      on(FlexibleShippingSettingsPage).goto_shippingmethods_element.scroll_into_view
+      #on(FlexibleShippingSettingsPage).add_new_method_element.scroll_into_view
       # on(FlexibleShippingSettingsPage).scroll_to(@current_page.add_new_method_element)
       on(FlexibleShippingSettingsPage).add_new_method_element.when_visible(30).click
       on(AddNewMethodPage).check_enable_method

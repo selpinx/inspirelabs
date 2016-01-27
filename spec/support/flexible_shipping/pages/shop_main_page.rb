@@ -10,6 +10,7 @@ class ShopMainPage
 	end
 	
 	def add_product_to_cart(product_name)
+		self.get_product(product_name).link_element(text: 'Add to cart').scroll_into_view
 		self.get_product(product_name).link_element(text: 'Add to cart').click
 	end
 end
